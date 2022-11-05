@@ -37,14 +37,14 @@ public class Classe implements Serializable {
 
 	public void afficher() {
 		final var formattedList = students.stream()
-			.map(etudiant -> etudiant.getFirstName() + " " + etudiant.getLastName() + " : " + etudiant.moyenne())
-			.reduce("%s%n %s"::formatted)
-			.orElse("Aucun élève");
+			                          .map(etudiant -> etudiant.getFirstName() + " " + etudiant.getLastName() + " : " + etudiant.moyenne())
+			                          .reduce("%s%n %s"::formatted)
+			                          .orElse("Aucun élève");
 
 		System.out.printf("""
-			                  Moyenne de la classe '%s' : %f
-			                  Liste des élèves : %n%s%n
-			                  """, name, moyenneClasse(), formattedList);
+		                  Moyenne de la classe '%s' : %f
+		                  Liste des élèves : %n%s%n
+		                     """.stripIndent(), name, moyenneClasse(), formattedList);
 	}
 
 	public float moyenneClasse() {

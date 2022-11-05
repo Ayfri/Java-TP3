@@ -31,13 +31,13 @@ public class Exercice1 extends Exercice<NumberInputManager> {
 	@Override
 	public void run() {
 
-		final var nameInputManager = new StringInputManager("Entrez le nom de la classe : ");
+		final var nameInputManager = new StringInputManager("");
 		final var getDataFromOldFileInputManager = new BooleanInputManager("Voulez-vous récupérer les données d'un fichier ? (y/n) : ");
 		if (getDataFromOldFileInputManager.getBoolean()) {
 			nameInputManager.setPrompt("Entrez le nom du fichier (q pour quitter) : ");
 
 			while (true) {
-				final var fileName = nameInputManager.getString();
+				final var fileName = nameInputManager.getString().trim();
 
 				if (fileName.equals("q")) break;
 				final Classe classe;
@@ -57,6 +57,7 @@ public class Exercice1 extends Exercice<NumberInputManager> {
 			}
 		}
 
+		nameInputManager.setPrompt("Entrez le nom de la classe : ");
 		final var classe = new Classe(nameInputManager.getString());
 
 		final var studentInputManager = new StringInputManager("Entrez le nom et le prénom de l'étudiant : ");

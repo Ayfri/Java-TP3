@@ -28,7 +28,7 @@ public class Etudiant implements Serializable {
 	}
 
 	public int moyenne() {
-		final var sum = notes.values().stream().mapToInt(list -> moyenne(list.get(0).toString())).sum();
+		final var sum = notes.values().stream().mapToInt(list -> (int) list.stream().mapToDouble(Double::doubleValue).average().orElse(0)).sum();
 		return sum / notes.size();
 	}
 
@@ -58,7 +58,7 @@ public class Etudiant implements Serializable {
 
 		final var notesList = notes.get(subject);
 		final var list = notesList == null ? new ArrayList<Double>() : notesList;
-		list.add(note);
+		list.add(note * 20 / max);
 		notes.put(subject, list);
 	}
 
