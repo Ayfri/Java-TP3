@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'fr.ayfri'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:23.0.0'
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(18))
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
