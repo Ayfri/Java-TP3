@@ -13,10 +13,6 @@ import org.jetbrains.annotations.NotNull;
 public abstract class Exercice<T extends AbstractInputManager> {
 
 	/**
-	 * Le nombre d'exercices.
-	 */
-	protected static int count = 0;
-	/**
 	 * La description de l'exercice.
 	 */
 	protected @NotNull String description;
@@ -33,15 +29,6 @@ public abstract class Exercice<T extends AbstractInputManager> {
 	 * La méthode pour exécuter l'exercice.
 	 */
 	public abstract void run();
-
-	/**
-	 * Getter du nombre d'exercices.
-	 *
-	 * @return Le nombre d'exercices.
-	 */
-	public static int getCount() {
-		return count;
-	}
 
 	/**
 	 * Getter de la description.
