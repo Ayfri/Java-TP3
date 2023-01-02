@@ -1,6 +1,6 @@
 package fr.ayfri.tp3.exercice1;
 
-import fr.ayfri.Exercice;
+import fr.ayfri.TerminalExercice;
 import fr.ayfri.inputs.BooleanInputManager;
 import fr.ayfri.inputs.NumberInputManager;
 import fr.ayfri.inputs.StringInputManager;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-public class Exercice1 extends Exercice<NumberInputManager> {
+public class Exercice1 extends TerminalExercice<NumberInputManager> {
 	public Exercice1() {
 		title = "TP 3.1 : Classe & Héritage -> Etudiant";
 		description = """

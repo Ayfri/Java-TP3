@@ -14,14 +14,14 @@ public final class Menu {
 	/**
 	 * La liste des exercices.
 	 */
-	private final @NotNull List<Exercice<?>> exercices = new ArrayList<>();
+	private final @NotNull List<Exercice> exercices = new ArrayList<>();
 
 	/**
 	 * Ajoute un exercice à la liste des exercices.
 	 *
 	 * @param exercice L'exercice à ajouter à la liste.
 	 */
-	public void addExercice(@NotNull final Exercice<?> exercice) {
+	public void addExercice(@NotNull final Exercice exercice) {
 		exercices.add(exercice);
 	}
 

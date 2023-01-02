@@ -1,16 +1,11 @@
 package fr.ayfri;
 
-import fr.ayfri.inputs.AbstractInputManager;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * La classe abstraite Exercice permettant de créer des exercices.
- *
- * @param <T> Le type du gestionnaire d'entrée.
- *
- * @author Pierre
+ * La classe abstraite GraphicExercice permettant de créer des exercices graphiques.
  */
-public abstract class Exercice<T extends AbstractInputManager> {
+public abstract class Exercice {
 
 	/**
 	 * La description de l'exercice.
@@ -20,10 +15,6 @@ public abstract class Exercice<T extends AbstractInputManager> {
 	 * Le titre de l'exercice.
 	 */
 	protected @NotNull String title;
-	/**
-	 * Le gestionnaire d'entrées.
-	 */
-	public @NotNull T inputManager;
 
 	/**
 	 * La méthode pour exécuter l'exercice.
