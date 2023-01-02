@@ -12,6 +12,10 @@ repositories {
 
 dependencies {
     implementation 'org.jetbrains:annotations:23.0.0'
+    // TODO : Remove debug dependencies.
+    implementation 'org.swingexplorer:swingexplorer-agent:1.7.0'
+    implementation 'org.swingexplorer:swingexplorer-core:1.7.0'
+    implementation 'com.formdev:flatlaf:3.0'
 }
 
 java {
