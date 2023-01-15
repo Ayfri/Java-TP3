@@ -26,7 +26,7 @@ public abstract class Exercice {
 	 *
 	 * @return La description de l'article.
 	 */
-	public @NotNull String getDescription() {
+	public final @NotNull String getDescription() {
 		return description;
 	}
 
@@ -35,7 +35,7 @@ public abstract class Exercice {
 	 *
 	 * @return Le titre de l'article.
 	 */
-	public @NotNull String getTitle() {
+	public final @NotNull String getTitle() {
 		return title;
 	}
 }

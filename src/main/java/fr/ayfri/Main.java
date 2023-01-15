@@ -2,7 +2,7 @@ package fr.ayfri;
 
 import fr.ayfri.inputs.CharInputManager;
 import fr.ayfri.tp3.exercice1.Exercice1;
-import fr.ayfri.tp3.exercice2.Exercice2;
+import fr.ayfri.tp3.exercice2.GraphicalMenu;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -31,7 +31,7 @@ public final class Main {
 	public static void main(final String @NotNull [] args) {
 		final var menu = new Menu();
 		menu.addExercice(new Exercice1());
-		menu.addExercice(new Exercice2());
+		menu.addExercice(new GraphicalMenu());
 
 		final var numberOfExercices = menu.getExerciceCount();
 		final var validChars = new char[numberOfExercices + 1];
