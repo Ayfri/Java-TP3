@@ -23,7 +23,8 @@ java {
     }
 }
 
-mainClassName = 'fr.ayfri.Main'
+// TODO : Change to normal main class when debug is done.
+mainClassName = 'org.swingexplorer.Launcher'
 
 run {
     standardInput = System.in
