@@ -4,18 +4,11 @@ import fr.ayfri.tp3.exercice1.PEtudiant.Etudiant;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Classe implements Serializable {
+public final class Classe implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = -902522407687904528L;
@@ -42,9 +35,9 @@ public class Classe implements Serializable {
 			                          .orElse("Aucun élève");
 
 		System.out.printf("""
-		                  Moyenne de la classe '%s' : %f
-		                  Liste des élèves : %n%s%n
-		                     """.stripIndent(), name, moyenneClasse(), formattedList);
+					Moyenne de la classe '%s' : %f
+					Liste des élèves : %n%s%n
+				""".stripIndent(), name, moyenneClasse(), formattedList);
 	}
 
 	public float moyenneClasse() {
@@ -74,5 +67,15 @@ public class Classe implements Serializable {
 
 	public void setEtudiant(final @NotNull Etudiant student) {
 		students.add(student);
+	}
+
+	@Serial
+	private void readObject(@NotNull ObjectInputStream in) throws IOException, ClassNotFoundException {
+		in.defaultReadObject();
+	}
+
+	@Serial
+	private void writeObject(@NotNull ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
 	}
 }

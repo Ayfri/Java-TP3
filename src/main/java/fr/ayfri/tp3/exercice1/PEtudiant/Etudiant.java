@@ -2,14 +2,13 @@ package fr.ayfri.tp3.exercice1.PEtudiant;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Etudiant implements Serializable {
+public final class Etudiant implements Serializable {
 	@Serial
 	private static final long serialVersionUID = -2011185525818839524L;
 	private final @NotNull String firstName;
@@ -73,5 +72,15 @@ public class Etudiant implements Serializable {
 
 	public @NotNull String getLastName() {
 		return lastName;
+	}
+
+	@Serial
+	private void readObject(@NotNull ObjectInputStream in) throws IOException, ClassNotFoundException {
+		in.defaultReadObject();
+	}
+
+	@Serial
+	private void writeObject(@NotNull ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
 	}
 }
