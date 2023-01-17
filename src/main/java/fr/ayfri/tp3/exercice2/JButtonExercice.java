@@ -7,10 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public final class JButtonExercice extends GraphicalExercice {
-
 	public JButtonExercice() {
 		title = "Test des boutons";
-		description = "	Afficher 2 boutons dans une fen\u00EAtre.";
+		description = "Afficher 2 boutons dans une fen\u00EAtre.";
 	}
 
 	public static void main(final String @NotNull [] args) {
@@ -22,12 +21,14 @@ public final class JButtonExercice extends GraphicalExercice {
 	}
 
 	private static void createSimpleButton(final @NotNull JFrame root, final @NotNull String text, final @Nullable ImageIcon image) {
-		final var button = new javax.swing.JButton(text, image);
-		button.addActionListener(e -> JOptionPane.showMessageDialog(root,
-				"Vous avez appuy\u00E9 sur : " + ((javax.swing.JButton) e.getSource()).getText(),
-				"Message",
-				JOptionPane.INFORMATION_MESSAGE
-		));
+		final var button = new JButton(text, image);
+		button.addActionListener(e ->
+				JOptionPane.showMessageDialog(root,
+						"Vous avez appuy\u00E9 sur : " + ((JButton) e.getSource()).getText(),
+						"Message",
+						JOptionPane.INFORMATION_MESSAGE
+				)
+		);
 		root.add(button);
 	}
 

@@ -20,7 +20,7 @@ public final class GraphicalMenu extends Exercice {
 				""";
 	}
 
-	public static void main(String @NotNull [] args) {
+	public static void main(final String @NotNull [] args) {
 		new GraphicalMenu().run();
 	}
 
@@ -67,7 +67,7 @@ public final class GraphicalMenu extends Exercice {
 		setUIFont(new FontUIResource("Arial", Font.PLAIN, 15));
 
 		exercices.add(new JButtonExercice());
-		exercices.add(new JButtonExercice());
+		exercices.add(new BoxLayoutExercice());
 
 		final var frame = new JFrame("Menu de s\u00E9lection");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,7 +77,7 @@ public final class GraphicalMenu extends Exercice {
 		frame.setResizable(false);
 
 		final var centerPanel = new JPanel();
-		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		centerPanel.setBorder(BorderFactory.createEmptyBorder(80, 20, 80, 20));
 		createExercicesMenu(centerPanel);
 		frame.add(centerPanel);
