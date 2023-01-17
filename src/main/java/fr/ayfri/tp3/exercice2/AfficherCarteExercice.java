@@ -5,9 +5,11 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.*;
 
 public final class AfficherCarteExercice extends GraphicalExercice {
@@ -31,18 +33,16 @@ public final class AfficherCarteExercice extends GraphicalExercice {
 	}
 
 	private void createCards() {
-		final var cardHeight = 94;
-		final var cardWidth = 69;
+		final var cardHeight = cardsAtlas.getHeight() / 4;
+		final var cardWidth = cardsAtlas.getWidth() / 13;
 		final var values = Card.CardType.values();
-		final var horizontalCards = cardsAtlas.getWidth() / (cardWidth + 1);
-		final var verticalCards = cardsAtlas.getHeight() / (cardHeight + 1);
+		final var horizontalCards = cardsAtlas.getWidth() / cardWidth;
+		final var verticalCards = cardsAtlas.getHeight() / cardHeight;
 
-		System.out.printf("image: %d x %d, oneCard : %d %d, cards : %d x %d %n", cardsAtlas.getHeight(), cardsAtlas.getWidth(), cardHeight, cardWidth, horizontalCards, verticalCards);
-//		cardsAtlas.tile
-		for (var i = 0; i < verticalCards; i++) {
-			for (var j = 0; j < horizontalCards; j++) {
-				final var cardImage = cardsAtlas.getSubimage((i * cardWidth) + 1, (i * cardHeight) + 1, cardWidth, cardHeight);
-				final var card = new Card(j, values[i]);
+		for (var y = 0; y < verticalCards; y++) {
+			for (var x = 0; x < horizontalCards; x++) {
+				final var card = new Card(x, values[y]);
+				final var cardImage = cardsAtlas.getSubimage(x * cardWidth, y * cardHeight, cardWidth, cardHeight);
 				allCards.put(card, cardImage);
 			}
 		}
@@ -62,23 +62,39 @@ public final class AfficherCarteExercice extends GraphicalExercice {
 	}
 
 	private void displayCard(final @NotNull JComponent root, final @NotNull Card card) {
-		final var image = new JLabel(new ImageIcon(allCards.get(card)));
+		final var cardImage = allCards.get(card);
+		final var image = new JLabel(new ImageIcon(cardImage));
 		root.add(image);
+		root.revalidate();
+		root.repaint();
+	}
+
+	private void createDrawButton(final @NotNull JComponent root, final @NotNull JComponent imagesPanel) {
+		final var button = new JButton("Tirer une carte");
+		final var random = new Random();
+		button.addActionListener(e -> {
+			final var card = takeRandomCard(random);
+			assert card != null;
+			if (takenCards.size() == (allCards.size())) {
+				button.setText("Toutes les cartes sont tir\u00E9es !");
+				button.setEnabled(false);
+				button.removeActionListener(button.getActionListeners()[0]);
+			}
+			displayCard(imagesPanel, card);
+		});
+		root.add(button);
 	}
 
 	@Override
 	public void run(final @NotNull JFrame frame) {
 		createCards();
 
-		frame.setSize(cardsAtlas.getWidth(), cardsAtlas.getHeight());
-		final var random = new Random();
+		frame.setSize((int) (cardsAtlas.getWidth() * 1.1), (int) (cardsAtlas.getHeight() * 1.3));
 		final var imagesPanel = new JPanel();
 		frame.add(imagesPanel);
 
-		for (var i = 0; i < allCards.size(); i++) {
-			final var card = takeRandomCard(random);
-			if (card == null) break;
-			displayCard(imagesPanel, card);
-		}
+		final var buttonPanel = new JPanel();
+		frame.add(buttonPanel, BorderLayout.SOUTH);
+		createDrawButton(buttonPanel, imagesPanel);
 	}
 }
