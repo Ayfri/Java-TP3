@@ -68,6 +68,7 @@ public final class GraphicalMenu extends Exercice {
 
 		exercices.add(new JButtonExercice());
 		exercices.add(new BoxLayoutExercice());
+		exercices.add(new AfficherCarteExercice());
 
 		final var frame = new JFrame("Menu de s\u00E9lection");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
