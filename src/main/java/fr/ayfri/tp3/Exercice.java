@@ -1,4 +1,4 @@
-package fr.ayfri;
+package fr.ayfri.tp3;
 
 import org.jetbrains.annotations.NotNull;
 

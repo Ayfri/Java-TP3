@@ -1,7 +1,6 @@
-package fr.ayfri.tp3.exercice2;
+package fr.ayfri.tp3;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
-import fr.ayfri.Exercice;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;

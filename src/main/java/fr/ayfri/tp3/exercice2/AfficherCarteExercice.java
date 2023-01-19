@@ -1,5 +1,6 @@
 package fr.ayfri.tp3.exercice2;
 
+import fr.ayfri.tp3.GraphicalExercice;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

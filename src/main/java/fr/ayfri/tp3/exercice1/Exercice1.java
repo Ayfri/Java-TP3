@@ -1,9 +1,9 @@
 package fr.ayfri.tp3.exercice1;
 
-import fr.ayfri.TerminalExercice;
 import fr.ayfri.inputs.BooleanInputManager;
 import fr.ayfri.inputs.NumberInputManager;
 import fr.ayfri.inputs.StringInputManager;
+import fr.ayfri.tp3.TerminalExercice;
 import fr.ayfri.tp3.exercice1.PClasse.Classe;
 import fr.ayfri.tp3.exercice1.PEtudiant.Etudiant;
 import org.jetbrains.annotations.NotNull;

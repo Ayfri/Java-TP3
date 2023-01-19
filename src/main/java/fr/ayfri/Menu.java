@@ -1,5 +1,6 @@
 package fr.ayfri;
 
+import fr.ayfri.tp3.Exercice;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
