@@ -25,15 +25,6 @@ public final class GraphicalMenu extends Exercice {
 		new GraphicalMenu().run();
 	}
 
-	public static void setUIFont(@NotNull final FontUIResource f) {
-		for (final var key : UIManager.getDefaults().keySet()) {
-			final var value = UIManager.get(key);
-			if (value instanceof FontUIResource orig) {
-				final var font = new Font(f.getFontName(), orig.getStyle(), f.getSize());
-				UIManager.put(key, new FontUIResource(font));
-			}
-		}
-	}
 
 	/**
 	 * Créé le menu de sélection des exercices.
@@ -57,6 +48,7 @@ public final class GraphicalMenu extends Exercice {
 		}
 	}
 
+	@Override
 	public void run() {
 		try {
 			UIManager.setLookAndFeel(new FlatDarculaLaf());
@@ -65,7 +57,7 @@ public final class GraphicalMenu extends Exercice {
 			e.printStackTrace();
 		}
 
-		setUIFont(new FontUIResource("Arial", Font.PLAIN, 15));
+		GraphicalExercice.setUIFont(new FontUIResource("Arial", Font.PLAIN, 15));
 
 		exercices.add(new JButtonExercice());
 		exercices.add(new BoxLayoutExercice());

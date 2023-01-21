@@ -8,7 +8,7 @@ import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
 public abstract class GraphicalExercice extends Exercice {
-	private static void setUIFont(@NotNull final FontUIResource resource) {
+	public static void setUIFont(@NotNull final FontUIResource resource) {
 		for (final var key : UIManager.getDefaults().keySet()) {
 			final var value = UIManager.get(key);
 			if (value instanceof FontUIResource orig) {
