@@ -2,6 +2,8 @@ package fr.ayfri.tp3.exercice3.gui;
 
 import fr.ayfri.tp3.exercice3.YuGiOhExercice;
 import fr.ayfri.tp3.exercice3.board.Deck;
+import fr.ayfri.tp3.exercice3.cards.AMonstre;
+import fr.ayfri.tp3.exercice3.cards.APiegeEtMagie;
 import fr.ayfri.tp3.exercice3.cards.ICarteYuGiOh;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,12 +44,21 @@ public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull Dec
 			label.addMouseListener(new MouseAdapterBordered() {
 				@Override
 				public void mouseClicked(final @NotNull MouseEvent e) {
-					final var cardGUI = new CardGUI<>(root, card);
-					cardGUI.display();
-
 					root.getContentPane().remove(scrollPane);
 					root.getContentPane().revalidate();
 					root.getContentPane().repaint();
+
+					if (PlayerGUI.isSelectingCard()) {
+						final var field = YuGiOhExercice.player.getField();
+
+						if (card instanceof AMonstre monsterCard) field.getMonsterArea().add(monsterCard);
+						else if (card instanceof APiegeEtMagie specialCard) field.getSpecialArea().add(specialCard);
+
+						return;
+					}
+
+					final var cardGUI = new CardGUI<>(root, card);
+					cardGUI.display();
 				}
 			});
 		}

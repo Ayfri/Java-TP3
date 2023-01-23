@@ -14,6 +14,12 @@ import java.io.IOException;
 public record PlayerGUI(@NotNull JFrame root, @NotNull Player player, boolean isFirst) {
 	public static final @NotNull Dimension CARD_SIZE = new Dimension(145, 205);
 
+	private static boolean selectingCard = false;
+
+	public static boolean isSelectingCard() {
+		return selectingCard;
+	}
+
 	public void display() throws IOException {
 		final var mainDeck = player.getField().getMainDeck();
 		final var firstDeckCard = mainDeck.first();
@@ -24,6 +30,16 @@ public record PlayerGUI(@NotNull JFrame root, @NotNull Player player, boolean is
 		final var sideDeck = player.getField().getSideDeck();
 		final var sideDeckCard = sideDeck.first();
 		if (firstDeckCard == null || extraDeckCard == null || sideDeckCard == null) return;
+
+		final var selectCardButton = new JButton("S\u00E9lectionner");
+		selectCardButton.setSize(200, 50);
+		selectCardButton.setLocation(376, 728);
+		selectCardButton.addActionListener(e -> {
+			selectingCard = !selectingCard;
+			selectCardButton.setFocusPainted(selectingCard);
+		});
+		System.out.printf("selected card button : %s\n", selectCardButton);
+		root.getContentPane().add(selectCardButton);
 
 		root.getContentPane().add(getImage(firstDeckCard, mainDeck, getMainDeckPos()));
 		root.getContentPane().add(getImage(extraDeckCard, extraDeck, getExtraDeckPos()));

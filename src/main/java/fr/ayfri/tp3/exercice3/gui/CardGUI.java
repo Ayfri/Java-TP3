@@ -45,7 +45,6 @@ public record CardGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull T c
 		} else if (card instanceof APiegeEtMagie specialCard) {
 			panel.add(displayText("Ic\u00F4ne : " + specialCard.getIcon().getTranslation(), 1000, 240, 400, 40));
 		}
-//		panel.add(displayText("Numéro : " + card.getId(), 1020, 250, 400, 50, true));
 
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
