@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 public enum MagicCardIcon implements SpecialCardIcon {
 	NORMAL("Normal"),
 	CONTINUOUS("Continue"),
-	EQUIP("Équipement"),
+	EQUIP("\u00C9quipement"),
 	FIELD("Terrain"),
 	QUICK_PLAY("Jeu rapide"),
 	RITUAL("Rituel");

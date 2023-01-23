@@ -45,7 +45,7 @@ public abstract class APiegeEtMagie implements ICarteYuGiOh {
 
 	@Override
 	public final @NotNull String getType() {
-		return type.name();
+		return type.getTranslation();
 	}
 
 	@NotNull

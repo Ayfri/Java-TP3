@@ -57,7 +57,7 @@ public abstract class AMonstre implements ICarteYuGiOh {
 
 	@Override
 	public final @NotNull String getType() {
-		return Arrays.stream(types).map(Enum::name).collect(Collectors.joining(","));
+		return Arrays.stream(types).map(Type::getTranslation).collect(Collectors.joining(","));
 	}
 
 	@Override

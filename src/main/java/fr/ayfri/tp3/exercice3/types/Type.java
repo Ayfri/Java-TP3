@@ -2,15 +2,15 @@ package fr.ayfri.tp3.exercice3.types;
 
 public enum Type {
 	AQUA("Aqua"),
-	BEAST("Bête"),
-	BEAST_WARRIOR("Bête-Guerrier"),
-	CREATOR_GOD("Dieu créateur"),
+	BEAST("B\u00EAte"),
+	BEAST_WARRIOR("B\u00EAte-Guerrier"),
+	CREATOR_GOD("Dieu cr\u00E9ateur"),
 	CYBERSE("Cyberse"),
 	DINOSAUR("Dinosaure"),
-	DIVINE_BEAST("Bête divine"),
+	DIVINE_BEAST("B\u00EAte divine"),
 	DRAGON("Dragon"),
-	FAIRY("Fée"),
-	FIEND("Démon"),
+	FAIRY("F\u00E9e"),
+	FIEND("D\u00E9mon"),
 	FISH("Poisson"),
 	INSECT("Insecte"),
 	MACHINE("Machine"),
@@ -23,8 +23,8 @@ public enum Type {
 	SPELLCASTER("Lanceur de sorts"),
 	THUNDER("Tonnerre"),
 	WARRIOR("Guerrier"),
-	WINGED_BEAST("Bête ailée"),
-	WYRM("Dragon à cornes"),
+	WINGED_BEAST("B\u00EAte ail\u00E9e"),
+	WYRM("Dragon \u00E0 cornes"),
 	ZOMBIE("Zombie");
 
 	private final String translation;
