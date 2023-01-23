@@ -31,10 +31,10 @@ public abstract class GraphicalExercice extends Exercice {
 		setUIFont(new FontUIResource("Arial", Font.PLAIN, 15));
 
 		final var frame = new JFrame(getTitle());
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		run(frame);
+		frame.setVisible(true);
 	}
 }

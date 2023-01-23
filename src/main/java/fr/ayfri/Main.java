@@ -3,6 +3,7 @@ package fr.ayfri;
 import fr.ayfri.inputs.CharInputManager;
 import fr.ayfri.tp3.exercice1.Exercice1;
 import fr.ayfri.tp3.exercice2.GraphicalMenu;
+import fr.ayfri.tp3.exercice3.YuGiOhExercice;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -32,12 +33,13 @@ public final class Main {
 		final var menu = new Menu();
 		menu.addExercice(new Exercice1());
 		menu.addExercice(new GraphicalMenu());
+		menu.addExercice(new YuGiOhExercice());
 
 		final var numberOfExercices = menu.getExerciceCount();
 		final var validChars = new char[numberOfExercices + 1];
 		validChars[0] = EXIT_CHAR;
 
-		for (int i = 0; i < numberOfExercices; i++) {
+		for (var i = 0; i < numberOfExercices; i++) {
 			validChars[i + 1] = String.valueOf(i + 1).charAt(0);
 		}
 

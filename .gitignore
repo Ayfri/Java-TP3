@@ -8,3 +8,4 @@ build
 
 ### Downloaded files
 src/**/resources/cards.json
+src/**/resources/cards/**
