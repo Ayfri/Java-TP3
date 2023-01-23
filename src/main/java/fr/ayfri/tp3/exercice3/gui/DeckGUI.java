@@ -14,7 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
-public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull Deck<T> deck) {
+public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull PlayerGUI playerGUI, @NotNull Deck<T> deck) {
 	public void display() throws IOException {
 		final var margin = 30;
 		final var cardsPerRow = (int) Math.floor((YuGiOhExercice.SCREEN_SIZE.width * .95 + margin) / (PlayerGUI.CARD_SIZE.width + margin));
@@ -35,7 +35,7 @@ public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull Dec
 			cardPanel.setLayout(new GridBagLayout());
 			cardPanel.setOpaque(false);
 
-			final var label = Utils.getImage(card, false);
+			final var label = Utils.getImage(card);
 			label.setOpaque(false);
 			label.setBorder(new EmptyBorder(4, 4, 4, 4));
 			cardPanel.add(label);
@@ -49,11 +49,12 @@ public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull Dec
 					root.getContentPane().repaint();
 
 					if (PlayerGUI.isSelectingCard()) {
-						final var field = YuGiOhExercice.player.getField();
+						final var field = playerGUI.player().getField();
 
 						if (card instanceof AMonstre monsterCard) field.getMonsterArea().add(monsterCard);
 						else if (card instanceof APiegeEtMagie specialCard) field.getSpecialArea().add(specialCard);
 
+						playerGUI.updateMonsterCards();
 						return;
 					}
 

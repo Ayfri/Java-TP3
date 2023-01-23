@@ -23,17 +23,9 @@ public final class Utils {
 		final Image resizedImage;
 		if (tilted) {
 			image = Utils.rotate(image, 90);
-			resizedImage = image.getScaledInstance(
-					PlayerGUI.CARD_SIZE.height,
-					PlayerGUI.CARD_SIZE.width,
-					Image.SCALE_SMOOTH
-			);
+			resizedImage = image.getScaledInstance(PlayerGUI.CARD_SIZE.height, PlayerGUI.CARD_SIZE.width, Image.SCALE_SMOOTH);
 		} else {
-			resizedImage = image.getScaledInstance(
-					PlayerGUI.CARD_SIZE.width,
-					PlayerGUI.CARD_SIZE.height,
-					Image.SCALE_SMOOTH
-			);
+			resizedImage = image.getScaledInstance(PlayerGUI.CARD_SIZE.width, PlayerGUI.CARD_SIZE.height, Image.SCALE_SMOOTH);
 		}
 
 		final var label = new JLabel(new ImageIcon(resizedImage));
@@ -99,28 +91,12 @@ public final class Utils {
 
 	public static @NotNull JLabel getImage(final @NotNull ICarteYuGiOh card, final @NotNull Dimension cardSize) {
 		final var image = loadImage(card.getImageURL());
-		final var resizedImage = cardSize == PlayerGUI.CARD_SIZE ? image : image.getScaledInstance(
-				cardSize.width,
-				cardSize.height,
-				Image.SCALE_SMOOTH
-		);
+		final var resizedImage = image.getScaledInstance(cardSize.width, cardSize.height, Image.SCALE_SMOOTH);
 
 		final var label = new JLabel(new ImageIcon(resizedImage));
 		label.setSize(cardSize.width, cardSize.height);
 
 		return label;
-	}
-
-	public static @NotNull ImageIcon getImageIcon(final @NotNull ICarteYuGiOh card) {
-		return getImageIcon(card, PlayerGUI.CARD_SIZE);
-	}
-
-	public static @NotNull ImageIcon getImageIcon(
-			final @NotNull ICarteYuGiOh card,
-			final @NotNull Dimension cardSize
-	) {
-		final var image = loadImage(card.getImageURL());
-		return new ImageIcon(image.getScaledInstance(cardSize.width, cardSize.height, Image.SCALE_SMOOTH));
 	}
 
 	private static String @NotNull [] loadSavedImages() {

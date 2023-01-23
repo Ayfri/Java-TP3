@@ -16,7 +16,6 @@ import java.io.IOException;
 public final class YuGiOhExercice extends GraphicalExercice {
 	public static final @NotNull Dimension SCREEN_SIZE = new Dimension(1600, 900);
 	private final @Nullable BufferedImage background;
-	public static final @NotNull Player player = new Player();
 
 	public YuGiOhExercice() {
 		title = "TP 3.3 : Classes -> YuGiOh ";
@@ -43,6 +42,8 @@ public final class YuGiOhExercice extends GraphicalExercice {
 		frame.setSize(SCREEN_SIZE);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(new BorderLayout());
+
+		final var player = new Player();
 
 		try {
 			final var firstPlayerGUI = new PlayerGUI(frame, player, true);
