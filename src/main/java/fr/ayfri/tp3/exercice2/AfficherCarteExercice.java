@@ -49,17 +49,20 @@ public final class AfficherCarteExercice extends GraphicalExercice {
 		}
 	}
 
-	private @Nullable Card takeRandomCard(final @NotNull Random random) {
-		final var availableCards = new HashSet<>(allCards.keySet());
-		availableCards.removeAll(takenCards);
-		try {
-			final var cards = new ArrayList<>(availableCards);
-			Collections.shuffle(cards, random);
-			takenCards.add(cards.get(0));
-			return cards.get(0);
-		} catch (final IndexOutOfBoundsException e) {
-			return null;
-		}
+	private void createDrawButton(final @NotNull JComponent root, final @NotNull JComponent imagesPanel) {
+		final var button = new JButton("Tirer une carte");
+		final var random = new Random();
+		button.addActionListener(e -> {
+			final var card = takeRandomCard(random);
+			assert card != null;
+			if (takenCards.size() == allCards.size()) {
+				button.setText("Toutes les cartes sont tir\u00E9es !");
+				button.setEnabled(false);
+				button.removeActionListener(button.getActionListeners()[0]);
+			}
+			displayCard(imagesPanel, card);
+		});
+		root.add(button);
 	}
 
 	private void displayCard(final @NotNull JComponent root, final @NotNull Card card) {
@@ -70,20 +73,17 @@ public final class AfficherCarteExercice extends GraphicalExercice {
 		root.repaint();
 	}
 
-	private void createDrawButton(final @NotNull JComponent root, final @NotNull JComponent imagesPanel) {
-		final var button = new JButton("Tirer une carte");
-		final var random = new Random();
-		button.addActionListener(e -> {
-			final var card = takeRandomCard(random);
-			assert card != null;
-			if (takenCards.size() == (allCards.size())) {
-				button.setText("Toutes les cartes sont tir\u00E9es !");
-				button.setEnabled(false);
-				button.removeActionListener(button.getActionListeners()[0]);
-			}
-			displayCard(imagesPanel, card);
-		});
-		root.add(button);
+	private @Nullable Card takeRandomCard(final @NotNull Random random) {
+		final var availableCards = new HashSet<>(allCards.keySet());
+		takenCards.forEach(availableCards::remove);
+		try {
+			final var cards = new ArrayList<>(availableCards);
+			Collections.shuffle(cards, random);
+			takenCards.add(cards.get(0));
+			return cards.get(0);
+		} catch (final IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	@Override
