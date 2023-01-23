@@ -11,7 +11,7 @@
 			<option name="taskNames">
 				<list>
 					<option value="run"/>
-					<option value="--args='fr.ayfri.tp3.exercice2.GraphicalMenu'"/>
+					<option value="--args='fr.ayfri.tp3.exercice3.YuGiOhExercice'"/>
 				</list>
 			</option>
 			<option name="vmOptions"/>
