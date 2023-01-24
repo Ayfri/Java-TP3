@@ -52,14 +52,6 @@ public final class GraphicalMenu extends Exercice {
 		centerPanel.setBorder(BorderFactory.createEmptyBorder(80, 20, 80, 20));
 		createExercicesMenu(centerPanel);
 		frame.add(centerPanel);
-
-		while (frame.isVisible()) {
-			try {
-				Thread.sleep(100);
-			} catch (final InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	/**

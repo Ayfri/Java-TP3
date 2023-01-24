@@ -55,14 +55,6 @@ public final class YuGiOhExercice extends GraphicalExercice {
 
 		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
-
-		while (frame.isVisible()) {
-			try {
-				Thread.sleep(100);
-			} catch (final InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	private void displayBackground(final @NotNull JFrame root) {
