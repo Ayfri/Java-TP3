@@ -12,10 +12,29 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Le record CardGUI permettant d'afficher une carte ainsi que ses informations.
+ * Permet aussi de sauvegarder l'image dans un JSON.
+ *
+ * @param root La fenêtre principale.
+ * @param card La carte à afficher.
+ * @param <T> Le type de carte.
+ *
+ * @author Ayfri
+ */
 public record CardGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull T card) {
-	private static final @NotNull Font font = new Font("Arial", Font.PLAIN, 20);
-	private static final @NotNull Font bigFont = new Font("Arial", Font.BOLD, 25);
+	/**
+	 * La police d'écriture pour les petites informations.
+	 */
+	private static final @NotNull Font SMALL_FONT = new Font("Arial", Font.PLAIN, 20);
+	/**
+	 * La police d'écriture pour les grandes informations.
+	 */
+	private static final @NotNull Font BIG_FONT = new Font("Arial", Font.BOLD, 25);
 
+	/**
+	 * Affiche la carte.
+	 */
 	public void display() {
 		final var panel = new JPanel();
 		panel.setLayout(null);
@@ -84,19 +103,42 @@ public record CardGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull T c
 		root.getContentPane().add(panel, 0);
 	}
 
-	private @NotNull JTextArea displayText(final @NotNull String text, final int x, final int y, final int width, final int height) {
+	/**
+	 * Affiche du texte en petit.
+	 *
+	 * @param text Le texte à afficher.
+	 * @param x La position en X.
+	 * @param y La position en Y.
+	 * @param width La largeur.
+	 * @param height La hauteur.
+	 *
+	 * @return Le composant.
+	 */
+	private static @NotNull JTextArea displayText(final @NotNull String text, final int x, final int y, final int width, final int height) {
 		return displayText(text, x, y, width, height, false);
 	}
 
-	private @NotNull JTextArea displayText(
-			final @NotNull String text, final int x, final int y, final int width, final int height, final boolean big
+	/**
+	 * Affiche du texte.
+	 *
+	 * @param text Le texte à afficher.
+	 * @param x La position en X.
+	 * @param y La position en Y.
+	 * @param width La largeur.
+	 * @param height La hauteur.
+	 * @param big Si le texte est gros.
+	 *
+	 * @return Le composant.
+	 */
+	private static @NotNull JTextArea displayText(
+		final @NotNull String text, final int x, final int y, final int width, final int height, final boolean big
 	) {
 		final var textArea = new JTextArea();
 		textArea.setBounds(x, y, width, height);
 		textArea.setOpaque(false);
 		textArea.setText(text);
 		textArea.setFocusable(false);
-		textArea.setFont(big ? bigFont : font);
+		textArea.setFont(big ? BIG_FONT : SMALL_FONT);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setEditable(false);

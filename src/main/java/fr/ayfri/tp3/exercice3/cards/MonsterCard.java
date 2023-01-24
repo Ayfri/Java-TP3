@@ -9,17 +9,35 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * La classe MonsterCard permettant de créer des monstres pour les cartes de Yu-Gi-Oh.
+ *
+ * @author Ayfri
+ */
 public final class MonsterCard extends AMonstre {
+	/**
+	 * Constructeur de la classe MonsterCard.
+	 *
+	 * @param name Le nom du monstre.
+	 * @param description La description du monstre.
+	 * @param attack L'attaque du monstre.
+	 * @param defense La défense du monstre.
+	 * @param id L'identifiant du monstre.
+	 * @param level Le niveau du monstre.
+	 * @param attribute L'attribut du monstre.
+	 * @param types Les types du monstre.
+	 * @param imageURL L'URL de l'image du monstre.
+	 */
 	public MonsterCard(
-			@NotNull final String name,
-			@NotNull final String description,
-			final int attack,
-			final int defense,
-			final int id,
-			final int level,
-			@NotNull final Attribute attribute,
-			final Type @NotNull [] types,
-			final @NotNull String imageURL
+		@NotNull final String name,
+		@NotNull final String description,
+		final int attack,
+		final int defense,
+		final int id,
+		final int level,
+		@NotNull final Attribute attribute,
+		final Type @NotNull [] types,
+		final @NotNull String imageURL
 	) {
 		super(name, description, attack, defense, id, level, attribute, types, imageURL);
 	}

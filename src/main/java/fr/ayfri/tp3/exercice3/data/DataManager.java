@@ -12,6 +12,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * La classe DataManager permettant de récupérer les données des cartes.
+ *
+ * @author Ayfri
+ */
 public final class DataManager {
 	private static final @NotNull Gson GSON;
 	private static final @NotNull String DATA_FILE = "src/main/resources/cards.json";
@@ -22,8 +27,16 @@ public final class DataManager {
 		GSON = gsonBuilder.create();
 	}
 
+	/**
+	 * Constructeur privé de la classe DataManager car c'est une classe utilitaire.
+	 */
 	private DataManager() {}
 
+	/**
+	 * Récupère la liste complète des cartes récupérées par le module yugiohapi.
+	 *
+	 * @return La liste complète des cartes récupérées par le module yugiohapi.
+	 */
 	public static @NotNull List<ICarteYuGiOh> getCards() {
 		final var file = new File(DATA_FILE);
 		if (!file.exists()) {

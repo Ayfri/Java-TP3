@@ -10,20 +10,33 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-public class Exercice1 extends TerminalExercice<NumberInputManager> {
+/**
+ * L'exercice 1 du TP 3.
+ *
+ * @author Ayfri
+ */
+public final class Exercice1 extends TerminalExercice<NumberInputManager> {
+	/**
+	 * Constructeur de l'exercice.
+	 */
 	public Exercice1() {
 		title = "TP 3.1 : Classe & Héritage -> Etudiant";
 		description = """
-					1. Coder la classe Etudiant. – Il faut rajouter les attributs et le ou les constructeurs.
-					2. Tester les fonctionnalités de la classe
-					3. Coder la classe Classe contenant des étudiants
-						– Créer une méthode de la classe Classe qui sauve la liste des étudiants dans un fichier
-						– Créer une méthode de la classe Classe qui lit la liste des étudiants dans un fichier
-					4. Tester les fonctionnalités de la classe
-				""";
+				1. Coder la classe Etudiant. – Il faut rajouter les attributs et le ou les constructeurs.
+				2. Tester les fonctionnalités de la classe
+				3. Coder la classe Classe contenant des étudiants
+					– Créer une méthode de la classe Classe qui sauve la liste des étudiants dans un fichier
+					– Créer une méthode de la classe Classe qui lit la liste des étudiants dans un fichier
+				4. Tester les fonctionnalités de la classe
+			""";
 		inputManager = new NumberInputManager("", 0, 20);
 	}
 
+	/**
+	 * Créé une instance de l'exercice et l'exécute, permettant de tester l'exercice directement.
+	 *
+	 * @param args Les arguments de la ligne de commande (non utilisés).
+	 */
 	public static void main(final String @NotNull [] args) {
 		new Exercice1().run();
 	}

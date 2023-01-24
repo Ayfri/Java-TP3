@@ -16,10 +16,15 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
 
-public class CardDeserializer implements JsonDeserializer<ICarteYuGiOh> {
+/**
+ * La classe CardDeserializer permettant de désérialiser les cartes sauvegardées dans le fichier JSON.
+ *
+ * @author Ayfri
+ */
+public final class CardDeserializer implements JsonDeserializer<ICarteYuGiOh> {
 	@Override
 	public @NotNull ICarteYuGiOh deserialize(
-			final JsonElement json, final @NotNull Type typeOfT, final @NotNull JsonDeserializationContext context
+		final JsonElement json, final @NotNull Type typeOfT, final @NotNull JsonDeserializationContext context
 	) throws JsonParseException {
 		System.out.println("ENCULER");
 

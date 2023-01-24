@@ -14,7 +14,22 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+/**
+ * Le record DeckGUI permettant d'afficher un deck.
+ *
+ * @param root La fenêtre principale.
+ * @param playerGUI Le joueur qui a le deck.
+ * @param deck Le deck à afficher.
+ * @param <T> Le type de carte.
+ *
+ * @author Ayfri
+ */
 public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull PlayerGUI playerGUI, @NotNull Deck<T> deck) {
+	/**
+	 * Affiche le deck.
+	 *
+	 * @throws IOException Si une erreur survient lors de l'affichage notamment à cause du chargement des images.
+	 */
 	public void display() throws IOException {
 		final var margin = 30;
 		final var cardsPerRow = (int) Math.floor((YuGiOhExercice.SCREEN_SIZE.width * .95 + margin) / (PlayerGUI.CARD_SIZE.width + margin));

@@ -9,18 +9,34 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * La classe MouseAdapterBordered permettant de créer un MouseAdapter pour les boutons avec une bordure blanche quand la souris est dessus.
+ *
+ * @author Ayfri
+ */
 public class MouseAdapterBordered extends MouseAdapter {
 
+	/**
+	 * Si la bordure ne doit pas être affichée.
+	 */
 	private final boolean canceled;
 
+	/**
+	 * Constructeur de la classe MouseAdapterBordered.
+	 */
 	public MouseAdapterBordered() {
 		this(false);
 	}
 
+	/**
+	 * Constructeur de la classe MouseAdapterBordered.
+	 *
+	 * @param canceled Si la bordure ne doit pas être affichée.
+	 */
 	public MouseAdapterBordered(final boolean canceled) {this.canceled = canceled;}
 
 	@Override
-	public void mouseEntered(final @NotNull MouseEvent e) {
+	public final void mouseEntered(final @NotNull MouseEvent e) {
 		final var component = (JComponent) e.getComponent();
 		if (canceled) {
 			try {
@@ -37,7 +53,7 @@ public class MouseAdapterBordered extends MouseAdapter {
 	}
 
 	@Override
-	public void mouseExited(final @NotNull MouseEvent e) {
+	public final void mouseExited(final @NotNull MouseEvent e) {
 		if (canceled) return;
 
 		final var component = (JComponent) e.getComponent();

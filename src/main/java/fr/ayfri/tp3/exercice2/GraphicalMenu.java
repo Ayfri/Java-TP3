@@ -11,16 +11,29 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe permettant de lancer le sélecteur d'exercices pour l'exercice 2.
+ *
+ * @author Ayfri
+ */
 public final class GraphicalMenu extends Exercice {
 	private final @NotNull List<GraphicalExercice> exercices = new ArrayList<>();
 
+	/**
+	 * Créé le menu graphique.
+	 */
 	public GraphicalMenu() {
 		title = "Exercice 2";
 		description = """
-				    Affiche le menu graphique pour l'exercice 2.
-				""";
+			    Affiche le menu graphique pour l'exercice 2.
+			""";
 	}
 
+	/**
+	 * Créé le menu de sélection des exercices.
+	 *
+	 * @param args Les arguments de la ligne de commande.
+	 */
 	public static void main(final String @NotNull [] args) {
 		new GraphicalMenu().run();
 	}

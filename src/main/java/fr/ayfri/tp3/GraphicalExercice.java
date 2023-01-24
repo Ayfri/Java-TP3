@@ -7,6 +7,11 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
+/**
+ * La classe abstraite permettant de créer des exercices graphiques.
+ *
+ * @author Ayfri
+ */
 public abstract class GraphicalExercice extends Exercice {
 	@Override
 	public final void run() {

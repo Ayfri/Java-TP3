@@ -18,12 +18,17 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 
+/**
+ * La classe CardApiDeserializer permettant de désérialiser les cartes de l'API.
+ *
+ * @author Ayfri
+ */
 public final class CardApiDeserializer implements JsonDeserializer<ICarteYuGiOh> {
 	@Override
 	public @Nullable ICarteYuGiOh deserialize(
-			final @NotNull JsonElement json,
-			final @NotNull Type typeOfT,
-			final @NotNull JsonDeserializationContext context
+		final @NotNull JsonElement json,
+		final @NotNull Type typeOfT,
+		final @NotNull JsonDeserializationContext context
 	) throws JsonParseException {
 		final var jsonObject = json.getAsJsonObject();
 		final var type = jsonObject.get("type").getAsString().toLowerCase();
@@ -43,16 +48,16 @@ public final class CardApiDeserializer implements JsonDeserializer<ICarteYuGiOh>
 			final var defense = jsonObject.has("def") ? jsonObject.get("def").getAsInt() : -1;
 			final var level = jsonObject.has("level") ? jsonObject.get("level").getAsInt() : -1;
 			return new MonsterCard(
-					name,
-					description,
-					jsonObject.get("atk").getAsInt(),
-					defense,
-					id,
-					level,
-					Attribute.valueOf(jsonObject.get("attribute").getAsString().toUpperCase()),
-					Arrays.stream(race.split(" ")).map(s -> fr.ayfri.tp3.exercice3.types.Type.valueOf(
-							s.toUpperCase())).toArray(fr.ayfri.tp3.exercice3.types.Type[]::new),
-					imageURL
+				name,
+				description,
+				jsonObject.get("atk").getAsInt(),
+				defense,
+				id,
+				level,
+				Attribute.valueOf(jsonObject.get("attribute").getAsString().toUpperCase()),
+				Arrays.stream(race.split(" ")).map(s -> fr.ayfri.tp3.exercice3.types.Type.valueOf(
+					s.toUpperCase())).toArray(fr.ayfri.tp3.exercice3.types.Type[]::new),
+				imageURL
 			);
 		}
 
@@ -60,12 +65,12 @@ public final class CardApiDeserializer implements JsonDeserializer<ICarteYuGiOh>
 		final var specialType = SpecialCardType.valueOf(type.split(" ")[0].toUpperCase());
 
 		return isMagic ? new MagicCard(name, description, specialType, id, MagicCardIcon.valueOf(race), imageURL) : new TrapCard(
-				name,
-				description,
-				specialType,
-				id,
-				TrapCardIcon.valueOf(race),
-				imageURL
+			name,
+			description,
+			specialType,
+			id,
+			TrapCardIcon.valueOf(race),
+			imageURL
 		);
 
 	}

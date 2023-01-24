@@ -7,15 +7,34 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 import java.awt.*;
 
-public class BoxLayoutExercice extends GraphicalExercice {
+/**
+ * L'exercice 2.1 du TP 3 sur les cartes.
+ *
+ * @author Ayfri
+ */
+public final class BoxLayoutExercice extends GraphicalExercice {
+	/**
+	 * Le champ de texte du nom.
+	 */
 	private @Nullable JTextField name;
+	/**
+	 * Le champ de texte du mot de passe.
+	 */
 	private @Nullable JTextField password;
 
+	/**
+	 * Constructeur de l'exercice.
+	 */
 	public BoxLayoutExercice() {
 		title = "BoxLayout";
 		description = "Afficher 2 inputs dont 1 de type password ainsi que 2 fen\u00EAtres de dialogues utilisant les valeurs des inputs.";
 	}
 
+	/**
+	 * Créé une instance de l'exercice et l'exécute, permettant de tester l'exercice directement.
+	 *
+	 * @param args Les arguments de la ligne de commande.
+	 */
 	public static void main(final String @NotNull [] args) {
 		new BoxLayoutExercice().run();
 	}
@@ -46,6 +65,13 @@ public class BoxLayoutExercice extends GraphicalExercice {
 		createButton(buttonsPanel, "Cancel");
 	}
 
+	/**
+	 * Créé un champ de texte.
+	 *
+	 * @param root Le composant parent.
+	 * @param text Le texte du label.
+	 * @param isPassword Si le champ de texte est un mot de passe.
+	 */
 	private void createText(final @NotNull JComponent root, final @NotNull String text, final boolean isPassword) {
 		final var panel = new JPanel();
 		final var label = new JLabel(text);
@@ -60,21 +86,37 @@ public class BoxLayoutExercice extends GraphicalExercice {
 		root.add(panel);
 	}
 
+	/**
+	 * Créé un bouton.
+	 *
+	 * @param root Le composant parent.
+	 * @param name Le nom du bouton.
+	 */
 	private void createButton(final @NotNull JComponent root, final @NotNull String name) {
 		final var button = new JButton(name);
 		button.addActionListener(e -> JOptionPane.showMessageDialog(root, """
-					Vous avez appuy\u00E9 sur : %s
-					nom : %s
-					mot de passe : %s
-				""".formatted(name, getName(), getPassword()), "Message", JOptionPane.INFORMATION_MESSAGE));
+				Vous avez appuy\u00E9 sur : %s
+				nom : %s
+				mot de passe : %s
+			""".formatted(name, getName(), getPassword()), "Message", JOptionPane.INFORMATION_MESSAGE));
 		root.add(button);
 	}
 
+	/**
+	 * Récupère le nom du champ de texte.
+	 *
+	 * @return Le nom du champ de texte.
+	 */
 	private @NotNull String getName() {
 		assert name != null;
 		return name.getText();
 	}
 
+	/**
+	 * Récupère le mot de passe du champ de texte.
+	 *
+	 * @return Le mot de passe du champ de texte.
+	 */
 	private @NotNull String getPassword() {
 		assert password != null;
 		return password.getText();

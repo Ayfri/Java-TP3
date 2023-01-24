@@ -13,16 +13,24 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * L'exercice 3 du TP 3 sur les cartes YuGiOh.
+ *
+ * @author Ayfri
+ */
 public final class YuGiOhExercice extends GraphicalExercice {
 	public static final @NotNull Dimension SCREEN_SIZE = new Dimension(1600, 900);
 	private final @Nullable BufferedImage background;
 
+	/**
+	 * Constructeur de l'exercice.
+	 */
 	public YuGiOhExercice() {
 		title = "TP 3.3 : Classes -> YuGiOh ";
 		description = """
-					Affiche un tapis de jeu de YuGiOh.
-					Possibilité de placer des cartes.
-				""";
+				Affiche un tapis de jeu de YuGiOh.
+				Possibilité de placer des cartes.
+			""";
 
 		try {
 			background = ImageIO.read(new File("src/main/resources/game_mat.jpg"));
@@ -31,6 +39,11 @@ public final class YuGiOhExercice extends GraphicalExercice {
 		}
 	}
 
+	/**
+	 * Méthode principale pour lancer l'exercice.
+	 *
+	 * @param args Les arguments de la ligne de commande.
+	 */
 	public static void main(final String @NotNull [] args) {
 		new YuGiOhExercice().run();
 	}
@@ -57,6 +70,11 @@ public final class YuGiOhExercice extends GraphicalExercice {
 		frame.getContentPane().repaint();
 	}
 
+	/**
+	 * Affiche l'image de fond.
+	 *
+	 * @param root La fenêtre principale.
+	 */
 	private void displayBackground(final @NotNull JFrame root) {
 		if (background == null) return;
 		final var image = new JLabel(new ImageIcon(background));

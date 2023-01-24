@@ -1,5 +1,12 @@
 package fr.ayfri.tp3.exercice3.types;
 
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * L'énumération Type permettant de créer des types pour les cartes de Yu-Gi-Oh.
+ *
+ * @author Ayfri
+ */
 public enum Type {
 	AQUA("Aqua"),
 	BEAST("B\u00EAte"),
@@ -27,13 +34,26 @@ public enum Type {
 	WYRM("Dragon \u00E0 cornes"),
 	ZOMBIE("Zombie");
 
-	private final String translation;
+	/**
+	 * La traduction du type.
+	 */
+	private final @NotNull String translation;
 
-	Type(final String translation) {
+	/**
+	 * Constructeur de l'énumération Type.
+	 *
+	 * @param translation La traduction du type.
+	 */
+	Type(final @NotNull String translation) {
 		this.translation = translation;
 	}
 
-	public String getTranslation() {
+	/**
+	 * Getter de la traduction du type.
+	 *
+	 * @return La traduction du type.
+	 */
+	public @NotNull String getTranslation() {
 		return translation;
 	}
 }
