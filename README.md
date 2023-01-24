@@ -19,3 +19,9 @@ du programme.
 Après plusieurs dizaines de cartes affichées, le dossier peut prendre plusieurs MB de stockage.
 
 Internet est donc requis pour lancer l'exercice YuGiOh.
+
+## Diagramme
+
+Le diagramme des classes est disponible dans le fichier `YuGiOh Diagramme.png`.
+
+![Diagramme des classes YuGiOh](YuGiOh%20Diagrame.png)
