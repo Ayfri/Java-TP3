@@ -18,7 +18,7 @@ public final class DataManager {
 
 	static {
 		final var gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(ICarteYuGiOh.class, new CardDeserielizer());
+		gsonBuilder.registerTypeAdapter(ICarteYuGiOh.class, new CardApiDeserializer());
 		GSON = gsonBuilder.create();
 	}
 

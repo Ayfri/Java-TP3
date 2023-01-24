@@ -34,6 +34,7 @@ public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull Pla
 		final var selectedSpecial = playerGUI.getPlayer().getField().getSpecialArea();
 
 		final var pane = root.getContentPane();
+
 		for (var i = 0; i < deck.size(); i++) {
 			final var card = deck.get(i);
 			final var cardPanel = new JPanel();
@@ -46,15 +47,10 @@ public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull Pla
 			cardPanel.add(label);
 			panel.add(cardPanel);
 
-
 			final boolean canceled;
-			if (card instanceof AMonstre monster) {
-				canceled = selectedMonsters.contains(monster) || playerGUI.hasMaxMonsters();
-			} else if (card instanceof APiegeEtMagie special) {
-				canceled = selectedSpecial.contains(special) || playerGUI.hasMaxSpecials();
-			} else {
-				canceled = false;
-			}
+			if (card instanceof AMonstre monster) canceled = selectedMonsters.contains(monster) || playerGUI.hasMaxMonsters();
+			else if (card instanceof APiegeEtMagie special) canceled = selectedSpecial.contains(special) || playerGUI.hasMaxSpecials();
+			else canceled = false;
 
 			final var isCardSelectionCanceled = isPlayerSelectingCards && canceled;
 

@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 
-public final class CardDeserielizer implements JsonDeserializer<ICarteYuGiOh> {
+public final class CardApiDeserializer implements JsonDeserializer<ICarteYuGiOh> {
 	@Override
 	public @Nullable ICarteYuGiOh deserialize(
 			final @NotNull JsonElement json,
@@ -28,7 +28,7 @@ public final class CardDeserielizer implements JsonDeserializer<ICarteYuGiOh> {
 		final var jsonObject = json.getAsJsonObject();
 		final var type = jsonObject.get("type").getAsString().toLowerCase();
 
-		if (type.equals("skill card")) return null;
+		if ("skill card".equals(type)) return null;
 
 		final var isMonster = type.contains("monster") || type.contains("token");
 
@@ -56,13 +56,17 @@ public final class CardDeserielizer implements JsonDeserializer<ICarteYuGiOh> {
 			);
 		}
 
-		final var isMagic = jsonObject.get("frameType").getAsString().equals("spell");
+		final var isMagic = "spell".equals(jsonObject.get("frameType").getAsString());
 		final var specialType = SpecialCardType.valueOf(type.split(" ")[0].toUpperCase());
 
-		if (isMagic) {
-			return new MagicCard(name, description, specialType, id, MagicCardIcon.valueOf(race), imageURL);
-		}
+		return isMagic ? new MagicCard(name, description, specialType, id, MagicCardIcon.valueOf(race), imageURL) : new TrapCard(
+				name,
+				description,
+				specialType,
+				id,
+				TrapCardIcon.valueOf(race),
+				imageURL
+		);
 
-		return new TrapCard(name, description, specialType, id, TrapCardIcon.valueOf(race), imageURL);
 	}
 }

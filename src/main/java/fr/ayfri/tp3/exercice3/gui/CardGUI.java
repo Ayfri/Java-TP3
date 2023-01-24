@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 
 public record CardGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull T card) {
 	private static final @NotNull Font font = new Font("Arial", Font.PLAIN, 20);
@@ -42,9 +44,33 @@ public record CardGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull T c
 			panel.add(displayText("Attaque : " + monsterCard.getAttack(), 1000, 280, 400, 40));
 			panel.add(displayText("D\u00E9fense : " + monsterCard.getDefense(), 1000, 320, 400, 40));
 			panel.add(displayText("Niveau : " + monsterCard.getLevel(), 1000, 360, 400, 40));
-		} else if (card instanceof APiegeEtMagie specialCard) {
+		} else if (card instanceof APiegeEtMagie specialCard)
 			panel.add(displayText("Ic\u00F4ne : " + specialCard.getIcon().getTranslation(), 1000, 240, 400, 40));
-		}
+
+		final var saveBtn = new JButton("Sauvegarder");
+		panel.add(saveBtn);
+
+		saveBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		saveBtn.setSize(200, 50);
+		saveBtn.setLocation(panel.getWidth() / 2 - saveBtn.getWidth() / 2, panel.getHeight() - 100);
+
+		saveBtn.addActionListener(e -> {
+			try {
+				final var fileChooser = new JFileChooser();
+				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+				final var resultCode = fileChooser.showDialog(saveBtn, "Sauvegarder");
+
+				if (resultCode == JFileChooser.APPROVE_OPTION) {
+					final var file = fileChooser.getSelectedFile();
+					if (file == null) return;
+
+					card.saveTo(new File(file, "card.json"));
+				}
+			} catch (final IOException ex) {
+				throw new RuntimeException(ex);
+			}
+		});
 
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
@@ -55,8 +81,7 @@ public record CardGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull T c
 			}
 		});
 
-		root.getContentPane().add(panel);
-		root.getContentPane().setComponentZOrder(panel, 0);
+		root.getContentPane().add(panel, 0);
 	}
 
 	private @NotNull JTextArea displayText(final @NotNull String text, final int x, final int y, final int width, final int height) {
@@ -64,12 +89,7 @@ public record CardGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull T c
 	}
 
 	private @NotNull JTextArea displayText(
-			final @NotNull String text,
-			final int x,
-			final int y,
-			final int width,
-			final int height,
-			final boolean big
+			final @NotNull String text, final int x, final int y, final int width, final int height, final boolean big
 	) {
 		final var textArea = new JTextArea();
 		textArea.setBounds(x, y, width, height);

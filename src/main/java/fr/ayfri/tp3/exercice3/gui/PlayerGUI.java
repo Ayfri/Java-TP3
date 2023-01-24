@@ -48,7 +48,7 @@ public final class PlayerGUI {
 
 		selectCardButton = new JButton("S\u00E9lectionner");
 		selectCardButton.setSize(200, 50);
-		selectCardButton.setLocation(376, 728);
+		selectCardButton.setLocation(375, 728);
 		selectCardButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		selectCardButton.addActionListener(e -> {
 			if (!selectCardButton.isEnabled()) return;
@@ -57,8 +57,38 @@ public final class PlayerGUI {
 			selectCardButton.setBackground(isSelecting ? new Color(30, 60, 45) : null);
 		});
 
+		final var loadBtn = new JButton("Charger carte");
+		loadBtn.setSize(200, 50);
+		loadBtn.setLocation(1025, 728);
+		loadBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		loadBtn.addActionListener(e -> {
+			JOptionPane.showMessageDialog(
+					root,
+					"D\u00E9sol\u00E9, la fonctionnalit\u00E9 de r\u00E9cup\u00E9rer une carte depuis un JSON ne marche pas."
+			);
+
+			/*
+			final var fileChooser = new JFileChooser();
+			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			fileChooser.setFileFilter(new FileNameExtensionFilter("JSON", "json"));
+			final var resultCode = fileChooser.showDialog(loadBtn, "Charger");
+
+			if (resultCode == JFileChooser.APPROVE_OPTION) {
+				final var file = fileChooser.getSelectedFile();
+				if (file == null) return;
+
+				try {
+					final var card = ICarteYuGiOh.loadFrom(file);
+					System.out.println(card);
+				} catch (IOException ex) {
+					throw new RuntimeException(ex);
+				}
+			} */
+		});
+
 		updateCards();
 
+		pane.add(loadBtn);
 		pane.add(selectCardButton);
 	}
 
