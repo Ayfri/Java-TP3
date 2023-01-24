@@ -72,9 +72,7 @@ public final class PlayerGUI {
 		pane.add(getCards(), 0);
 
 		selectCardButton.setEnabled(!(hasMaxMonsters() && hasMaxSpecials()));
-		if (!selectCardButton.isEnabled()) {
-			isSelecting = false;
-		}
+		if (!selectCardButton.isEnabled()) isSelecting = false;
 	}
 
 	public @NotNull Player getPlayer() {return player;}
@@ -104,19 +102,17 @@ public final class PlayerGUI {
 		final var label = Utils.getImage(card, tilted);
 		label.setLocation(position);
 
-		if (deck != null) {
-			label.addMouseListener(new MouseAdapterBordered() {
-				@Override
-				public void mouseClicked(final @NotNull MouseEvent e) {
-					try {
-						final var deckGui = new DeckGUI<>(root, PlayerGUI.this, deck);
-						deckGui.display();
-					} catch (final IOException ex) {
-						throw new RuntimeException(ex);
-					}
+		if (deck != null) label.addMouseListener(new MouseAdapterBordered() {
+			@Override
+			public void mouseClicked(final @NotNull MouseEvent e) {
+				try {
+					final var deckGui = new DeckGUI<>(root, PlayerGUI.this, deck);
+					deckGui.display();
+				} catch (final IOException ex) {
+					throw new RuntimeException(ex);
 				}
-			});
-		}
+			}
+		});
 
 		return label;
 	}
@@ -148,13 +144,6 @@ public final class PlayerGUI {
 			label.setLocation(position);
 			panel.add(label);
 
-			label.addMouseListener(new MouseAdapterBordered() {
-				@Override
-				public void mouseClicked(final @NotNull MouseEvent e) {
-					cards.remove(card);
-					updateCards();
-				}
-			});
 			index++;
 		}
 	}
