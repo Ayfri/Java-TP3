@@ -22,11 +22,7 @@ public final class DataManager {
 		GSON = gsonBuilder.create();
 	}
 
-	private DataManager() {
-		final var cardsTypeToken = new TypeToken<List<ICarteYuGiOh>>() {};
-
-//		final var typeFactory = ReflectiveTypeAdapterFactory.Adapter()
-	}
+	private DataManager() {}
 
 	public static @NotNull List<ICarteYuGiOh> getCards() {
 		final var file = new File(DATA_FILE);

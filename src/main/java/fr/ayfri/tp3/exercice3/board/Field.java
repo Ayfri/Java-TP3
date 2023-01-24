@@ -5,31 +5,31 @@ import fr.ayfri.tp3.exercice3.cards.APiegeEtMagie;
 import fr.ayfri.tp3.exercice3.cards.ICarteYuGiOh;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public final class Field {
-	private final @NotNull List<AMonstre> monsterArea = new ArrayList<>(5);
-	private final @NotNull List<APiegeEtMagie> specialArea = new ArrayList<>(5);
-	private final @NotNull List<ICarteYuGiOh> graveyard = new ArrayList<>();
-	private final @NotNull List<ICarteYuGiOh> hand = new ArrayList<>();
+	private final @NotNull Set<AMonstre> monsterArea = new HashSet<>(5);
+	private final @NotNull Set<APiegeEtMagie> specialArea = new HashSet<>(5);
+	private final @NotNull Set<ICarteYuGiOh> graveyard = new HashSet<>();
+	private final @NotNull Set<ICarteYuGiOh> hand = new HashSet<>();
 	private final @NotNull Deck<ICarteYuGiOh> mainDeck = new Deck.Factory<>(ICarteYuGiOh.class).createDeck(40);
 	private final @NotNull Deck<AMonstre> extraDeck = new Deck.Factory<>(AMonstre.class).createDeck(15);
 	private final @NotNull Deck<ICarteYuGiOh> sideDeck = new Deck.Factory<>(ICarteYuGiOh.class).createDeck(15);
 
-	public @NotNull List<AMonstre> getMonsterArea() {
+	public @NotNull Set<AMonstre> getMonsterArea() {
 		return monsterArea;
 	}
 
-	public @NotNull List<APiegeEtMagie> getSpecialArea() {
+	public @NotNull Set<APiegeEtMagie> getSpecialArea() {
 		return specialArea;
 	}
 
-	public @NotNull List<ICarteYuGiOh> getGraveyard() {
+	public @NotNull Set<ICarteYuGiOh> getGraveyard() {
 		return graveyard;
 	}
 
-	public @NotNull List<ICarteYuGiOh> getHand() {
+	public @NotNull Set<ICarteYuGiOh> getHand() {
 		return hand;
 	}
 

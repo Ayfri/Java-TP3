@@ -29,6 +29,11 @@ public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull Pla
 		scrollPane.setBorder(null);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(12);
 
+		final var isPlayerSelectingCards = playerGUI.isSelecting();
+		final var selectedMonsters = playerGUI.getPlayer().getField().getMonsterArea();
+		final var selectedSpecial = playerGUI.getPlayer().getField().getSpecialArea();
+
+		final var pane = root.getContentPane();
 		for (var i = 0; i < deck.size(); i++) {
 			final var card = deck.get(i);
 			final var cardPanel = new JPanel();
@@ -41,20 +46,34 @@ public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull Pla
 			cardPanel.add(label);
 			panel.add(cardPanel);
 
-			label.addMouseListener(new MouseAdapterBordered() {
+
+			final boolean canceled;
+			if (card instanceof AMonstre monster) {
+				canceled = selectedMonsters.contains(monster) || playerGUI.hasMaxMonsters();
+			} else if (card instanceof APiegeEtMagie special) {
+				canceled = selectedSpecial.contains(special) || playerGUI.hasMaxSpecials();
+			} else {
+				canceled = false;
+			}
+
+			final var isCardSelectionCanceled = isPlayerSelectingCards && canceled;
+
+			label.addMouseListener(new MouseAdapterBordered(isCardSelectionCanceled) {
 				@Override
 				public void mouseClicked(final @NotNull MouseEvent e) {
-					root.getContentPane().remove(scrollPane);
-					root.getContentPane().revalidate();
-					root.getContentPane().repaint();
+					if (isCardSelectionCanceled) return;
 
-					if (PlayerGUI.isSelectingCard()) {
-						final var field = playerGUI.player().getField();
+					pane.remove(scrollPane);
+					pane.revalidate();
+					pane.repaint();
+
+					if (isPlayerSelectingCards) {
+						final var field = playerGUI.getPlayer().getField();
 
 						if (card instanceof AMonstre monsterCard) field.getMonsterArea().add(monsterCard);
 						else if (card instanceof APiegeEtMagie specialCard) field.getSpecialArea().add(specialCard);
 
-						playerGUI.updateMonsterCards();
+						playerGUI.updateCards();
 						return;
 					}
 
@@ -64,20 +83,17 @@ public record DeckGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull Pla
 			});
 		}
 
-		root.getContentPane().add(scrollPane);
-		root.getContentPane().setComponentZOrder(scrollPane, 0);
-		root.getContentPane().revalidate();
+		pane.add(scrollPane, 0);
+		pane.revalidate();
 
-		scrollPane.getVerticalScrollBar().addAdjustmentListener(e -> {
-			root.getContentPane().repaint();
-		});
+		scrollPane.getVerticalScrollBar().addAdjustmentListener(e -> pane.repaint());
 
 		scrollPane.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(final @NotNull MouseEvent e) {
-				root.getContentPane().remove(scrollPane);
-				root.getContentPane().revalidate();
-				root.getContentPane().repaint();
+				pane.remove(scrollPane);
+				pane.revalidate();
+				pane.repaint();
 			}
 		});
 	}

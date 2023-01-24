@@ -11,7 +11,13 @@ import java.util.Random;
 import java.util.Set;
 
 public final class Main {
-	private static final @NotNull Set<String> SPECIAL_CARDS = Set.of("Invocateur Dragon Bleu", "Sortil\u00E8ge de l'ombre", "Typhon d'Espace Mystique");
+	private static final @NotNull Set<String> SPECIAL_CARDS = Set.of(
+			"Invocateur Dragon Bleu",
+			"Sortil\u00E8ge de l'ombre",
+			"Typhon d'Espace Mystique"
+	);
+
+	private Main() {}
 
 	public static void main(final String @NotNull [] args) {
 		final var url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?language=fr";

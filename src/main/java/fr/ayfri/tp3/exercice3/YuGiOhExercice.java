@@ -46,7 +46,7 @@ public final class YuGiOhExercice extends GraphicalExercice {
 		final var player = new Player();
 
 		try {
-			final var firstPlayerGUI = new PlayerGUI(frame, player, true);
+			final var firstPlayerGUI = new PlayerGUI(frame, player);
 			firstPlayerGUI.display();
 		} catch (final IOException e) {
 			throw new RuntimeException(e);
