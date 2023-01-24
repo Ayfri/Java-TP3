@@ -2,6 +2,7 @@ package fr.ayfri.tp3.exercice3.cards;
 
 import fr.ayfri.tp3.exercice3.Attribute;
 import fr.ayfri.tp3.exercice3.types.Type;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,8 +29,9 @@ public final class MonsterCard extends AMonstre {
 		if (obj == this) return true;
 		if (obj == null || obj.getClass() != this.getClass()) return false;
 		final var other = (MonsterCard) obj;
-		return this.name.equals(other.name) && this.description.equals(other.description) && this.attack == other.attack && this.defense == other.defense && this.id == other.id && this.level == other.level && this.attribute.equals(
-				other.attribute) && Arrays.equals(this.types, other.types);
+		return this.name.equals(other.name) && this.description.equals(other.description) && this.attack == other.attack &&
+		       this.defense == other.defense && this.id == other.id && this.level == other.level &&
+		       this.attribute.equals(other.attribute) && Arrays.equals(this.types, other.types);
 	}
 
 	@Override
@@ -37,9 +39,11 @@ public final class MonsterCard extends AMonstre {
 		return Objects.hash(name, description, attack, defense, id, level, attribute, types);
 	}
 
+	@Contract(pure = true)
 	@Override
-	public String toString() {
-		return "MonsterCard[" + "name=" + name + ", " + "description=" + description + ", " + "attack=" + attack + ", " + "defense=" + defense + ", " + "id=" + id + ", " + "level=" + level + ", " + "attribute=" + attribute + ", " + "types=" + Arrays.toString(
-				types) + ']';
+	public @NotNull String toString() {
+		return "MonsterCard[" + "name=" + name + ", " + "description=" + description + ", " + "attack=" + attack + ", " + "defense=" +
+		       defense + ", " + "id=" + id + ", " + "level=" + level + ", " + "attribute=" + attribute + ", " + "types=" +
+		       Arrays.toString(types) + ']';
 	}
 }

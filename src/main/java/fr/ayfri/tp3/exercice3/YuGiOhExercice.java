@@ -1,7 +1,7 @@
 package fr.ayfri.tp3.exercice3;
 
 import fr.ayfri.tp3.GraphicalExercice;
-import fr.ayfri.tp3.exercice3.board.Player;
+import fr.ayfri.tp3.exercice3.board.Board;
 import fr.ayfri.tp3.exercice3.gui.PlayerGUI;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -43,10 +43,10 @@ public final class YuGiOhExercice extends GraphicalExercice {
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(new BorderLayout());
 
-		final var player = new Player();
+		final var board = new Board();
 
 		try {
-			final var firstPlayerGUI = new PlayerGUI(frame, player);
+			final var firstPlayerGUI = new PlayerGUI(frame, board.getFirstPlayer());
 			firstPlayerGUI.display();
 		} catch (final IOException e) {
 			throw new RuntimeException(e);

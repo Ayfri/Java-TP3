@@ -87,7 +87,15 @@ public final class PlayerGUI {
 		return player.getField().getSpecialArea().size() >= 5;
 	}
 
-	private <T extends ICarteYuGiOh> JLabel getImage(
+	private <T extends ICarteYuGiOh> @NotNull JLabel getImage(
+			final @NotNull ICarteYuGiOh card,
+			final @NotNull Deck<T> deck,
+			final @NotNull Point position
+	) {
+		return getImage(card, deck, position, false);
+	}
+
+	private <T extends ICarteYuGiOh> @NotNull JLabel getImage(
 			final @NotNull ICarteYuGiOh card,
 			final @Nullable Deck<T> deck,
 			final @NotNull Point position,
@@ -111,14 +119,6 @@ public final class PlayerGUI {
 		}
 
 		return label;
-	}
-
-	private <T extends ICarteYuGiOh> JLabel getImage(
-			final @NotNull ICarteYuGiOh card,
-			final @NotNull Deck<T> deck,
-			final @NotNull Point position
-	) {
-		return getImage(card, deck, position, false);
 	}
 
 	private @NotNull JPanel getCards() {

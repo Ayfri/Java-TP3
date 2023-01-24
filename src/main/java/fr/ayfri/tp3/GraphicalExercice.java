@@ -8,18 +8,6 @@ import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
 public abstract class GraphicalExercice extends Exercice {
-	public static void setUIFont(@NotNull final FontUIResource resource) {
-		for (final var key : UIManager.getDefaults().keySet()) {
-			final var value = UIManager.get(key);
-			if (value instanceof FontUIResource orig) {
-				final var font = new Font(resource.getFontName(), orig.getStyle(), resource.getSize());
-				UIManager.put(key, new FontUIResource(font));
-			}
-		}
-	}
-
-	public abstract void run(final @NotNull JFrame frame);
-
 	@Override
 	public final void run() {
 		try {
@@ -37,4 +25,16 @@ public abstract class GraphicalExercice extends Exercice {
 		run(frame);
 		frame.setVisible(true);
 	}
+
+	public static void setUIFont(@NotNull final FontUIResource resource) {
+		for (final var key : UIManager.getDefaults().keySet()) {
+			final var value = UIManager.get(key);
+			if (value instanceof FontUIResource orig) {
+				final var font = new Font(resource.getFontName(), orig.getStyle(), resource.getSize());
+				UIManager.put(key, new FontUIResource(font));
+			}
+		}
+	}
+
+	public abstract void run(final @NotNull JFrame frame);
 }

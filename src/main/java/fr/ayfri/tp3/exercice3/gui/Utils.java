@@ -58,7 +58,7 @@ public final class Utils {
 		}
 	}
 
-	public static @NotNull BufferedImage rotate(final BufferedImage img, final double angle) {
+	public static @NotNull BufferedImage rotate(final @NotNull BufferedImage img, final double angle) {
 		final var rads = Math.toRadians(angle);
 		final var sin = Math.abs(StrictMath.sin(rads));
 		final var cos = Math.abs(StrictMath.cos(rads));

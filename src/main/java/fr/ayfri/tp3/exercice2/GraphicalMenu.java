@@ -25,29 +25,6 @@ public final class GraphicalMenu extends Exercice {
 		new GraphicalMenu().run();
 	}
 
-
-	/**
-	 * Créé le menu de sélection des exercices.
-	 * Via des boutons, on peut choisir l'exercice à lancer.
-	 *
-	 * @param panel Le panel où afficher le menu.
-	 */
-	private void createExercicesMenu(final @NotNull JPanel panel) {
-		for (final var exercice : exercices) {
-			final var buttonPanel = new JPanel();
-			buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-			buttonPanel.setMaximumSize(new Dimension(300, 100));
-
-			final var button = new JButton(exercice.getTitle());
-			button.addActionListener(e -> exercice.run());
-			button.setToolTipText(exercice.getDescription());
-			button.setPreferredSize(new Dimension(180, 45));
-
-			buttonPanel.add(button);
-			panel.add(buttonPanel);
-		}
-	}
-
 	@Override
 	public void run() {
 		try {
@@ -82,6 +59,28 @@ public final class GraphicalMenu extends Exercice {
 			} catch (final InterruptedException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	/**
+	 * Créé le menu de sélection des exercices.
+	 * Via des boutons, on peut choisir l'exercice à lancer.
+	 *
+	 * @param panel Le panel où afficher le menu.
+	 */
+	private void createExercicesMenu(final @NotNull JPanel panel) {
+		for (final var exercice : exercices) {
+			final var buttonPanel = new JPanel();
+			buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+			buttonPanel.setMaximumSize(new Dimension(300, 100));
+
+			final var button = new JButton(exercice.getTitle());
+			button.addActionListener(e -> exercice.run());
+			button.setToolTipText(exercice.getDescription());
+			button.setPreferredSize(new Dimension(180, 45));
+
+			buttonPanel.add(button);
+			panel.add(buttonPanel);
 		}
 	}
 }

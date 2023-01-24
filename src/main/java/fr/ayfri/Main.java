@@ -43,7 +43,11 @@ public final class Main {
 			validChars[i + 1] = String.valueOf(i + 1).charAt(0);
 		}
 
-		final var inputManager = new CharInputManager("Entrez le numéro de l'exercice à exécuter (q pour quitter): ", "Numéro d'exercice invalide.", validChars);
+		final var inputManager = new CharInputManager(
+				"Entrez le numéro de l'exercice à exécuter (q pour quitter): ",
+				"Numéro d'exercice invalide.",
+				validChars
+		);
 		inputManager.setCaseSensitive(false);
 		char input;
 		do {

@@ -27,23 +27,26 @@ public final class Etudiant implements Serializable {
 	}
 
 	public int moyenne() {
-		final var sum = notes.values().stream().mapToInt(list -> (int) list.stream().mapToDouble(Double::doubleValue).average().orElse(0)).sum();
+		final var sum = notes.values()
+		                     .stream()
+		                     .mapToInt(list -> (int) list.stream().mapToDouble(Double::doubleValue).average().orElse(0))
+		                     .sum();
 		return sum / notes.size();
 	}
 
-	public int moyenne(@NotNull String subject) {
+	public void afficherNote(@NotNull final String subject) {
+		final var notesList = notes.get(subject);
+		if (notesList == null) return;
+
+		System.out.printf("Moyenne en %s : %d%n", subject, moyenne(subject));
+	}
+
+	public int moyenne(@NotNull final String subject) {
 		final var notesList = notes.get(subject);
 		if (notesList == null) return 0;
 
 		final var sum = notesList.stream().mapToInt(Double::intValue).sum();
 		return sum / notesList.size();
-	}
-
-	public void afficherNote(@NotNull String subject) {
-		final var notesList = notes.get(subject);
-		if (notesList == null) return;
-
-		System.out.printf("Moyenne en %s : %d%n", subject, moyenne(subject));
 	}
 
 	public void setNote(final @NotNull String subject, final double note) {
@@ -75,12 +78,12 @@ public final class Etudiant implements Serializable {
 	}
 
 	@Serial
-	private void readObject(@NotNull ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(@NotNull final ObjectInputStream in) throws IOException, ClassNotFoundException {
 		in.defaultReadObject();
 	}
 
 	@Serial
-	private void writeObject(@NotNull ObjectOutputStream out) throws IOException {
+	private void writeObject(@NotNull final ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
 	}
 }

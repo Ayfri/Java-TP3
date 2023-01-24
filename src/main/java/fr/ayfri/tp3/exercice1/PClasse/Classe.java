@@ -19,7 +19,7 @@ public final class Classe implements Serializable {
 
 	public Classe(final @NotNull String name) {this.name = name;}
 
-	public static @Nullable Classe load(@NotNull String fileName) throws IOException, ClassNotFoundException {
+	public static @Nullable Classe load(@NotNull final String fileName) throws IOException, ClassNotFoundException {
 		final var file = new File(fileName);
 		if (!file.exists()) return null;
 
@@ -30,9 +30,10 @@ public final class Classe implements Serializable {
 
 	public void afficher() {
 		final var formattedList = students.stream()
-			                          .map(etudiant -> etudiant.getFirstName() + " " + etudiant.getLastName() + " : " + etudiant.moyenne())
-			                          .reduce("%s%n %s"::formatted)
-			                          .orElse("Aucun élève");
+		                                  .map(etudiant -> etudiant.getFirstName() + " " + etudiant.getLastName() + " : " +
+		                                                   etudiant.moyenne())
+		                                  .reduce("%s%n %s"::formatted)
+		                                  .orElse("Aucun élève");
 
 		System.out.printf("""
 					Moyenne de la classe '%s' : %f
@@ -48,10 +49,14 @@ public final class Classe implements Serializable {
 	}
 
 	public @Nullable Etudiant getEtudiant(final @NotNull String firstName, final @NotNull String lastName) {
-		return students.stream().filter(student -> student.getFirstName().equals(firstName) && student.getLastName().equals(lastName)).findFirst().orElse(null);
+		return students.stream()
+		               .filter(student -> student.getFirstName().equals(firstName) && student.getLastName().equals(lastName))
+		               .findFirst()
+		               .orElse(
+				               null);
 	}
 
-	public void save(@NotNull String fileName) {
+	public void save(@NotNull final String fileName) {
 		final var file = new File(fileName);
 		try (final var oos = new ObjectOutputStream(new FileOutputStream(file))) {
 			oos.writeObject(this);
@@ -70,12 +75,12 @@ public final class Classe implements Serializable {
 	}
 
 	@Serial
-	private void readObject(@NotNull ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(@NotNull final ObjectInputStream in) throws IOException, ClassNotFoundException {
 		in.defaultReadObject();
 	}
 
 	@Serial
-	private void writeObject(@NotNull ObjectOutputStream out) throws IOException {
+	private void writeObject(@NotNull final ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
 	}
 }

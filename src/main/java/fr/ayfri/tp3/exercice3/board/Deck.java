@@ -2,6 +2,7 @@ package fr.ayfri.tp3.exercice3.board;
 
 import fr.ayfri.tp3.exercice3.cards.ICarteYuGiOh;
 import fr.ayfri.tp3.exercice3.data.DataManager;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,8 +35,9 @@ public final class Deck<T extends ICarteYuGiOh> {
 		return cards.size();
 	}
 
+	@Contract(pure = true)
 	@Override
-	public String toString() {
+	public @NotNull String toString() {
 		return "Deck{" + "size=" + size + ", cards=" + cards + '}';
 	}
 

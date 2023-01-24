@@ -14,17 +14,17 @@ public class Exercice1 extends TerminalExercice<NumberInputManager> {
 	public Exercice1() {
 		title = "TP 3.1 : Classe & Héritage -> Etudiant";
 		description = """
-				1. Coder la classe Etudiant. – Il faut rajouter les attributs et le ou les constructeurs.
-				2. Tester les fonctionnalités de la classe
-				3. Coder la classe Classe contenant des étudiants
-					– Créer une méthode de la classe Classe qui sauve la liste des étudiants dans un fichier
-					– Créer une méthode de la classe Classe qui lit la liste des étudiants dans un fichier
-				4. Tester les fonctionnalités de la classe
-			""";
+					1. Coder la classe Etudiant. – Il faut rajouter les attributs et le ou les constructeurs.
+					2. Tester les fonctionnalités de la classe
+					3. Coder la classe Classe contenant des étudiants
+						– Créer une méthode de la classe Classe qui sauve la liste des étudiants dans un fichier
+						– Créer une méthode de la classe Classe qui lit la liste des étudiants dans un fichier
+					4. Tester les fonctionnalités de la classe
+				""";
 		inputManager = new NumberInputManager("", 0, 20);
 	}
 
-	public static void main(String @NotNull [] args) {
+	public static void main(final String @NotNull [] args) {
 		new Exercice1().run();
 	}
 
@@ -43,7 +43,7 @@ public class Exercice1 extends TerminalExercice<NumberInputManager> {
 				final Classe classe;
 				try {
 					classe = Classe.load(fileName);
-				} catch (IOException | ClassNotFoundException e) {
+				} catch (final IOException | ClassNotFoundException e) {
 					System.out.println("Impossible de charger le fichier " + fileName + " !");
 					continue;
 				}

@@ -33,6 +33,20 @@ public final class AfficherCarteExercice extends GraphicalExercice {
 		new AfficherCarteExercice().run();
 	}
 
+	@Override
+	public void run(final @NotNull JFrame frame) {
+		createCards();
+		frame.setSize((int) (cardsAtlas.getWidth() * 1.1), (int) (cardsAtlas.getHeight() * 1.3));
+
+		final var imagesPanel = new JPanel();
+		frame.add(imagesPanel);
+
+		final var buttonPanel = new JPanel();
+		frame.add(buttonPanel, BorderLayout.SOUTH);
+
+		createDrawButton(buttonPanel, imagesPanel);
+	}
+
 	private void createCards() {
 		final var cardHeight = cardsAtlas.getHeight() / 4;
 		final var cardWidth = cardsAtlas.getWidth() / 13;
@@ -65,14 +79,6 @@ public final class AfficherCarteExercice extends GraphicalExercice {
 		root.add(button);
 	}
 
-	private void displayCard(final @NotNull JComponent root, final @NotNull Card card) {
-		final var cardImage = allCards.get(card);
-		final var image = new JLabel(new ImageIcon(cardImage));
-		root.add(image);
-		root.revalidate();
-		root.repaint();
-	}
-
 	private @Nullable Card takeRandomCard(final @NotNull Random random) {
 		final var availableCards = new HashSet<>(allCards.keySet());
 		takenCards.forEach(availableCards::remove);
@@ -86,16 +92,11 @@ public final class AfficherCarteExercice extends GraphicalExercice {
 		}
 	}
 
-	@Override
-	public void run(final @NotNull JFrame frame) {
-		createCards();
-
-		frame.setSize((int) (cardsAtlas.getWidth() * 1.1), (int) (cardsAtlas.getHeight() * 1.3));
-		final var imagesPanel = new JPanel();
-		frame.add(imagesPanel);
-
-		final var buttonPanel = new JPanel();
-		frame.add(buttonPanel, BorderLayout.SOUTH);
-		createDrawButton(buttonPanel, imagesPanel);
+	private void displayCard(final @NotNull JComponent root, final @NotNull Card card) {
+		final var cardImage = allCards.get(card);
+		final var image = new JLabel(new ImageIcon(cardImage));
+		root.add(image);
+		root.revalidate();
+		root.repaint();
 	}
 }

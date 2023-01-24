@@ -63,7 +63,14 @@ public record CardGUI<T extends ICarteYuGiOh>(@NotNull JFrame root, @NotNull T c
 		return displayText(text, x, y, width, height, false);
 	}
 
-	private @NotNull JTextArea displayText(final @NotNull String text, final int x, final int y, final int width, final int height, final boolean big) {
+	private @NotNull JTextArea displayText(
+			final @NotNull String text,
+			final int x,
+			final int y,
+			final int width,
+			final int height,
+			final boolean big
+	) {
 		final var textArea = new JTextArea();
 		textArea.setBounds(x, y, width, height);
 		textArea.setOpaque(false);
