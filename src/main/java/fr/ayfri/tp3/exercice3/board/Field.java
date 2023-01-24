@@ -1,5 +1,6 @@
 package fr.ayfri.tp3.exercice3.board;
 
+import fr.ayfri.tp3.exercice3.board.Deck.Factory;
 import fr.ayfri.tp3.exercice3.cards.AMonstre;
 import fr.ayfri.tp3.exercice3.cards.APiegeEtMagie;
 import fr.ayfri.tp3.exercice3.cards.ICarteYuGiOh;
@@ -13,9 +14,9 @@ public final class Field {
 	private final @NotNull Set<APiegeEtMagie> specialArea = new HashSet<>(5);
 	private final @NotNull Set<ICarteYuGiOh> graveyard = new HashSet<>();
 	private final @NotNull Set<ICarteYuGiOh> hand = new HashSet<>();
-	private final @NotNull Deck<ICarteYuGiOh> mainDeck = new Deck.Factory<>(ICarteYuGiOh.class).createDeck(40);
-	private final @NotNull Deck<AMonstre> extraDeck = new Deck.Factory<>(AMonstre.class).createDeck(15);
-	private final @NotNull Deck<ICarteYuGiOh> sideDeck = new Deck.Factory<>(ICarteYuGiOh.class).createDeck(15);
+	private final @NotNull Deck<ICarteYuGiOh> mainDeck = new Factory<>(ICarteYuGiOh.class).createDeck(40);
+	private final @NotNull Deck<AMonstre> extraDeck = new Factory<>(AMonstre.class).createDeck(15);
+	private final @NotNull Deck<ICarteYuGiOh> sideDeck = new Factory<>(ICarteYuGiOh.class).createDeck(15);
 
 	public @NotNull Set<AMonstre> getMonsterArea() {
 		return monsterArea;

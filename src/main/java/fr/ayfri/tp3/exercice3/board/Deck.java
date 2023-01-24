@@ -1,5 +1,7 @@
 package fr.ayfri.tp3.exercice3.board;
 
+import fr.ayfri.tp3.exercice3.cards.AMonstre;
+import fr.ayfri.tp3.exercice3.cards.APiegeEtMagie;
 import fr.ayfri.tp3.exercice3.cards.ICarteYuGiOh;
 import fr.ayfri.tp3.exercice3.data.DataManager;
 import org.jetbrains.annotations.Contract;
@@ -41,13 +43,12 @@ public final class Deck<T extends ICarteYuGiOh> {
 		return "Deck{" + "size=" + size + ", cards=" + cards + '}';
 	}
 
-	public boolean addCard(final @NotNull T card) {
+	public void addCard(final @NotNull T card) {
 		final var count = (int) cards.stream().filter(c -> c.getName().equals(card.getName())).count();
 
-		if (count >= 3 || cards.size() >= size) return false;
+		if (count >= 3 || cards.size() >= size) return;
 
 		cards.add(card);
-		return true;
 	}
 
 	public @Nullable T first() {
@@ -62,15 +63,37 @@ public final class Deck<T extends ICarteYuGiOh> {
 			this.entityBeanType = entityBeanType;
 		}
 
+
 		public @NotNull Deck<T> createDeck(final int size) {
 			Collections.shuffle(CARDS);
 
 			final var deck = new Deck<T>(size);
 			var i = 0;
-			while (deck.cardsCount() < size && i < CARDS.size()) {
-				final var card = CARDS.get(i);
+			final var isSimple = !entityBeanType.isAssignableFrom(ICarteYuGiOh.class);
+			final var maxSize = isSimple ? size : (int) Math.ceil(size / 2d);
+			var monstersSize = 0;
+			var specialsSize = 0;
 
-				if (entityBeanType.isAssignableFrom(card.getClass())) {
+			while (i < CARDS.size()) {
+				final var card = CARDS.get(i);
+				final var isCard = entityBeanType.isAssignableFrom(card.getClass()) &&
+				                   (
+						                   entityBeanType.isAssignableFrom(AMonstre.class) ||
+						                   entityBeanType.isAssignableFrom(APiegeEtMagie.class)
+				                   );
+
+				final var canAddMonster = card instanceof AMonstre && monstersSize < maxSize;
+				final var canAddSpecial = card instanceof APiegeEtMagie && specialsSize < maxSize;
+				final var canAdd = isCard && (canAddMonster || canAddSpecial);
+
+				if (isSimple && deck.cardsCount() == maxSize) break;
+
+				if (monstersSize + specialsSize == size) break;
+
+				if (canAdd) {
+					if (card instanceof AMonstre) monstersSize++;
+					else specialsSize++;
+
 					//noinspection unchecked
 					deck.addCard((T) card);
 				}
